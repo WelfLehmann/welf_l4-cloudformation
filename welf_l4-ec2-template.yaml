@@ -6,7 +6,7 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: Security Group für welf_l4 EC2 Instance
-      GroupName: welf_l4-security-group
+      GroupName: welf-l4-security-group
       SecurityGroupIngress:
         - IpProtocol: tcp  # Korrekt: TCP ist das Transportprotokoll für HTTP
           FromPort: 80
@@ -18,9 +18,6 @@ Resources:
           ToPort: 443
           CidrIp: 0.0.0.0/0
           Description: "HTTPS"
-      Tags:
-        - Key: Name
-          Value: welf_l4-security-group
 
   welf_l4EC2Instance:
     Type: AWS::EC2::Instance
@@ -28,19 +25,8 @@ Resources:
       InstanceType: t2.micro
       ImageId: ami-06d289e97e14eade2
       SecurityGroups:
-        - !Ref welf_l4SecurityGroup
-      Tags:
-        - Key: Name
-          Value: welf_l4-ec2-instance
+        - !Ref welf-l4SecurityGroup
 
-Outputs:
-  welf_l4InstanceId:
-    Description: ID der EC2 Instanz
-    Value: !Ref welf_l4EC2Instance
-  
-  welf_l4PublicIP:
-    Description: Öffentliche IP-Adresse der EC2 Instanz
-    Value: !GetAtt welf_l4EC2Instance.PublicIp
   
   welf_l4SecurityGroupId:
     Description: ID der Security Group
