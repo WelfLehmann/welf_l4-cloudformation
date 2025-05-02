@@ -2,7 +2,7 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: 'CloudFormation Template für eine EC2 Instanz mit t2.micro und Security Group für Port 80 und 443 3'
 
 Resources:
-  welf_l4SecurityGroup:
+  welfl4SecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: Security Group für welf_l4 EC2 Instance
