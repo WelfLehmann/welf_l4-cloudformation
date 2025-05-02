@@ -1,0 +1,45 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'CloudFormation Template für eine EC2 Instanz mit t2.micro und Security Group für Port 80 und 443'
+
+Resources:
+  welf_l4SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Security Group für welf_l4 EC2 Instance
+      GroupName: welf_l4-security-group
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 443
+          ToPort: 443
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Name
+          Value: welf_l4-security-group
+
+  welf_l4EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-06d289e97e14eade2
+      SecurityGroups:
+        - !Ref welf_l4SecurityGroup
+      Tags:
+        - Key: Name
+          Value: welf_l4-ec2-instance
+
+Outputs:
+  welf_l4InstanceId:
+    Description: ID der EC2 Instanz
+    Value: !Ref welf_l4EC2Instance
+  
+  welf_l4PublicIP:
+    Description: Öffentliche IP-Adresse der EC2 Instanz
+    Value: !GetAtt welf_l4EC2Instance.PublicIp
+  
+  welf_l4SecurityGroupId:
+    Description: ID der Security Group
+    Value: !Ref welf_l4SecurityGroup
