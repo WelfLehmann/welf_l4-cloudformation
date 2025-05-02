@@ -30,4 +30,4 @@ Resources:
   
   welf_l4SecurityGroupId:
     Description: ID der Security Group
-    Value: !Ref welf_l4SecurityGroup
+    Value: !Ref welf-l4SecurityGroup
