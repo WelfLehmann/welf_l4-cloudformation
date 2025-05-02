@@ -26,8 +26,3 @@ Resources:
       ImageId: ami-06d289e97e14eade2
       SecurityGroups:
         - !Ref welf-l4SecurityGroup
-
-  
-  welf_l4SecurityGroupId:
-    Description: ID der Security Group
-    Value: !Ref welf-l4SecurityGroup
