@@ -8,14 +8,16 @@ Resources:
       GroupDescription: Security Group für welf_l4 EC2 Instance
       GroupName: welf_l4-security-group
       SecurityGroupIngress:
-        - IpProtocol: tcp
+        - IpProtocol: tcp  # Korrekt: TCP ist das Transportprotokoll für HTTP
           FromPort: 80
           ToPort: 80
           CidrIp: 0.0.0.0/0
-        - IpProtocol: tcp
+          Description: "HTTP"
+        - IpProtocol: tcp  # Korrekt: TCP ist das Transportprotokoll für HTTPS
           FromPort: 443
           ToPort: 443
           CidrIp: 0.0.0.0/0
+          Description: "HTTPS"
       Tags:
         - Key: Name
           Value: welf_l4-security-group
